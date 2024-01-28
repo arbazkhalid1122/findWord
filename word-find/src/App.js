@@ -9,6 +9,9 @@ function App() {
 
   const num = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '_', '=']
   const line1 = ['Q', 'W', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\'];
+  const line2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';'];
+  const line3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/'];
+  const line4 = ['ctrl', 'alt', 'cmd'];
   return (
     <div className="App">
       <input onChange={getVal} />
@@ -26,45 +29,37 @@ function App() {
           <ul class="keys">
             <li id="red">🌵</li>
             {line1.map((char)=>(
-              <li id={char}>{char}</li>
+              <li>{char}</li>
             ))}
           </ul>
           <ul class="keys">
             <li id="blue">🧢</li>
-            <li>A</li>
-            <li>S</li>
-            <li>D</li>
-            <li>F</li>
-            <li>G</li>
-            <li>H</li>
-            <li>J</li>
-            <li>K</li>
-            <li>L</li>
-            <li>;</li>
+            {line2.map((char)=>(
+              <li>{char}</li>
+            ))}
             <li>""</li>
             <li id="green">🔫</li>
           </ul>
           <ul class="keys">
             <li id="rebeca">🔥</li>
-            <li>Z</li>
-            <li>X</li>
-            <li>C</li>
-            <li>V</li>
-            <li>B</li>
-            <li>N</li>
-            <li>M</li>
-            <li>,</li>
-            <li>.</li>
-            <li>?</li>
+            {line3.map((char)=>(
+              <li>{char}</li>
+            ))}
             <li id="up">🧬</li>
           </ul>
           <ul class="keys">
-            <li id="one">ctrl</li>
+            {/* <li id="one">ctrl</li>
             <li id="one">alt</li>
             <li id="one">cmd</li>
             <li id="two"></li>
             <li id="one">cmd</li>
-            <li id="one">alt</li>
+            <li id="one">alt</li> */}
+             {line4.map((char)=>(
+              <li id='one'>{char}</li>
+            ))}
+            <li id="two"></li>
+            <li id="one">{line4[0]}</li>
+            <li id="one">{line4[1]}</li>
           </ul>
         </div>
       </div>
