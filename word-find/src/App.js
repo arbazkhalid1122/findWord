@@ -57,8 +57,8 @@ function App() {
              {line4.map((char)=>(
               <li id='one'>{char}</li>
             ))}
-            <li id="two"></li>
-            <li id="one">{line4[0]}</li>
+            <li className='glow' id="two"></li>
+            <li className='glow' id="one">{line4[0]}</li>
             <li id="one">{line4[1]}</li>
           </ul>
         </div>
