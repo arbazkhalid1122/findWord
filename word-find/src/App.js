@@ -2,50 +2,77 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [value, setValue] = useState(null)
-  const getVal = (val) => {
-    setValue(val.target.value)
-  }
+  const [value, setValue] = useState('');
+  const [activeKey, setActiveKey] = useState(null);
 
-  const num = [{icon:'💀',id: 'grey'},1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '_', '=',{icon:'🎨',id:'yellow'}]
-  const line1 = [{icon:'🌵',id:'red'},'Q', 'W', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\'];
-  const line2 = [{icon:'🧢',id:'blue'},'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';',{icon:'" "'},{icon:'🔫',id:'green'}];
-  const line3 = [{icon:'🔥',id:'rebeca'},'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/'];
+
+
+  const num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '_', '='];
+  const line1 = ['Q', 'W', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\'];
+  const line2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';'];
+  const line3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/'];
   const line4 = ['ctrl', 'alt', 'cmd'];
+
+  const getVal = (val) => {
+    console.log(val, 'val');
+    const enteredValue = val.target.value;
+    setValue(enteredValue);
+
+    const foundKey = [...num, ...line1, ...line2, ...line3, ...line4].find((key) => key.toUpperCase() === enteredValue.toUpperCase());
+    console.log(foundKey, 'aaaaa');
+    setActiveKey(foundKey);
+  };
   return (
     <div className="App">
-      <input onChange={getVal} />
+      <input onChange={getVal} value={value} />
       <p>{value}</p>
 
       <div>
         <div>
-          <ul>
+          <ul className="keys">
+            <li id="grey">💀</li>
             {num.map((number, index) => (
-              <li key={index} id={number.id}>{number.icon ? number.icon: number}</li>
+              <li key={index} style={{ background: activeKey === number ? 'red' : 'transparent' }}>{number}</li>
+            ))}
+            <li id="yellow">🎨</li>
+          </ul>
+          <ul className="keys">
+            <li id="red" style={{ background: activeKey === 'Q' ? 'red' : 'transparent' }}>🌵</li>
+            {line1.map((char, index) => (
+              <li key={index} style={{ background: activeKey === char ? 'red' : 'transparent' }}>
+                {char}
+              </li>
             ))}
           </ul>
-          <ul>
-            {line1.map((char) => (
-              <li id={char.id}>{char.icon ? char.icon: char}</li>
+          <ul className="keys">
+            <li id="blue">🧢</li>
+            {line2.map((char, index) => (
+              <li key={index} style={{ background: activeKey === char ? 'red' : 'transparent' }}>
+                {char}
+              </li>
             ))}
+            <li>""</li>
+            <li id="green">🔫</li>
           </ul>
-          <ul>
-            {line2.map((char) => (
-              <li id={char.id}>{char.icon ? char.icon : char}</li>
-            ))}
-          </ul>
-          <ul>
-            {line3.map((char) => (
-              <li id={char.id}>{char.icon ? char.icon: char}</li>
+          <ul className="keys">
+            <li id="rebeca">🔥</li>
+            {line3.map((char, index) => (
+              <li key={index} style={{ background: activeKey === char ? 'red' : 'transparent' }}>
+                {char}
+              </li>
             ))}
             <li id="up">🧬</li>
           </ul>
-          <ul>
-            {line4.map((char) => (
-              <li id='one'>{char}</li>
+          <ul className="keys">
+            {line4.map((char, index) => (
+              <li key={index} id="one" style={{ background: activeKey === char ? 'red' : 'transparent' }}>
+                {char}
+              </li>
             ))}
-            <li className='glow' id="two"></li>
-            <li className='glow' id="one">{line4[0]}</li>
+            <li className="glow" id="two"></li>
+            <li className="glow" id="one">
+              {line4[0]}
+            </li>
             <li id="one">{line4[1]}</li>
           </ul>
         </div>
