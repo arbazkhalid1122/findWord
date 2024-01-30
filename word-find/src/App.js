@@ -15,17 +15,18 @@ function App() {
 
   const getVal = (val) => {
     console.log(val, 'val');
-    const enteredValue = val.target.value;
-    setValue(enteredValue);
-
-    const foundKey = [...num, ...line1, ...line2, ...line3, ...line4].find((key) => key.toUpperCase() === enteredValue.toUpperCase());
-    console.log(foundKey, 'aaaaa');
-    setActiveKey(foundKey);
+    const enteredValue = val.target.value.toUpperCase();
+    const foundKeys = [...num, ...line1, ...line2, ...line3, ...line4]
+    const get = foundKeys.filter((item)=> item == enteredValue)
+    // console.log(get,'get');
+    // console.log(foundKeys,'found');
+    console.log(get.split(','),'aaaaaaaaaaa');
+        setActiveKey(get.split(','));
+// console.log(foundKeys,'dont');
   };
   return (
     <div className="App">
-      <input onChange={getVal} value={value} />
-      <p>{value}</p>
+      <input onChange={getVal} />
 
       <div>
         <div>
